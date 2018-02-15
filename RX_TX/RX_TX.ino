@@ -82,16 +82,7 @@ void loop() {
         // ============
         
         // == BLOC M ==
-        EtatPresent = EtatSuivant;
-        /*if(EtatPresent == RDY) {
-          Serial.println("RDY");
-        }
-        else if(EtatPresent == RX) {
-          Serial.println("RX");
-        }
-        else if(EtatPresent == TX) {
-          Serial.println("TX");
-        }*/
+        EtatPresent = EtatSuivant;       
         // ============
         
         // == BLOC G ==
@@ -103,7 +94,6 @@ void loop() {
         }
         else if(EtatPresent == RDY);
         // ============
-
 
         // == Test ETAT via cmd
         if(in_cmd == '5') {
@@ -117,21 +107,17 @@ void loop() {
           else if(state_chip == 8) {
               Serial.println("En RX");
           }
-        }
-        
+        }        
 }   
 
 // == FONCTIONS ==
-
-
 void reception_datas(){
       // == Partie reception ==
       uint8_t numPackets = 64;                                                   // Nombre de paquets a recevoir 
       uint8_t fifoRX[64] = {1,2,3};                                             // Used for received packet data storage
       uint8_t statusModem[2]={0,0} , fifoInfoBuf[2] = {0,0};                                             // Stores packet handler status/flags
       // ======================
-      //const uint8_t siConfigArray_433_RX[] = RADIO_CONFIGURATION_DATA_ARRAY;
-     // si_load_cfg(siConfigArray_433_RX);                                      // Chargement config general
+
       delay(2);
       si_rx_cfg(0,0,0,0,0);                                                     // Chargement config RX
       delay(2);
@@ -167,13 +153,7 @@ void reception_datas(){
             Serial.print(" ");
           }
           Serial.println("");
-      }
-      //si_status_ph(0, statusModem); // Clear all flag
-      //reset_fifo(fifoInfoBuf , SI_RESET_FIFO_RXTX);     // RAZ des fifos a vERIFIER !!!!
-      //Serial.print("Nb data dans fifos RX : ");
-      //Serial.println(fifoInfoBuf[0] , DEC);
-      //Serial.print("Nb data dans fifos TX : ");
-      //Serial.println(fifoInfoBuf[1] , DEC);
+      }     
 }
 
 void transmission_datas() {
@@ -191,5 +171,4 @@ void transmission_datas() {
   si_tx_cfg(3, 0, 1, 7, 0, 3) ;
   si_tx_start();
   delay(10);*/
-  //Serial.println("Dans la transmission");
 }
